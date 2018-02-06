@@ -1,7 +1,29 @@
 {
   "name": "bulkgate/sms",
-  "description": "package under development",
+  "description": "Simple PHP SDK for sending SMS via BulkGate portal",
+  "keywords": ["sms", "bulkgate", "nette"],
+  "homepage": "https://www.bulkgate.com",
+  "license": ["BSD-3-Clause"],
+  "authors": [
+    {
+      "name": "TOPefekt s.r.o.",
+      "homepage": "http://www.topefekt.com"
+    },
+    {
+      "name": "Lukáš Piják",
+      "homepage": "http://www.lukaspijak.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "bulkgate/message": "^2.0",
+    "bulkgate/utils": "^2.0"
+  },
+  "require-dev": {
+    "nette/tester": "~2.0"
+  },
   "autoload": {
     "classmap": ["src/"]
-  }
+  },
+  "minimum-stability": "dev"
 }
