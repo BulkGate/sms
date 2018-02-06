@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
