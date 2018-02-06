@@ -1,0 +1,7 @@
+{
+  "name": "bulkgate/sms",
+  "description": "package under development",
+  "autoload": {
+    "classmap": ["src/"]
+  }
+}
