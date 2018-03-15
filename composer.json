@@ -1,6 +1,6 @@
 {
   "name": "bulkgate/sms",
-  "description": "Simple PHP SDK for sending SMS via BulkGate portal",
+  "description": "Simple PHP SDK for sending SMS via BulkGate portal. For credentials contact us.",
   "keywords": ["sms", "bulkgate", "nette"],
   "homepage": "https://www.bulkgate.com",
   "license": ["BSD-3-Clause"],
