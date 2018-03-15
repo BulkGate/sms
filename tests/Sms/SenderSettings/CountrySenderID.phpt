@@ -23,7 +23,7 @@ Assert::same([
 	'sender' => '',
 ], $country->toArray());
 
-$country = new CountrySenderID('CZ', '2', '');
+$country = new CountrySenderID('CZ', 2, '');
 Assert::same([
 	'iso' => 'cz',
 	'gate' => 2,
