@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -22,11 +22,11 @@ class Text implements \JsonSerializable
      * @param null|string $text
      * @param array $variables
      */
-    public function __construct(?string $text = null, array $variables = [])
+    public function __construct($text = null, array $variables = [])
     {
         if($text !== null)
         {
-            $this->text($text, $variables);
+            $this->text((string) $text, $variables);
         }
     }
 
@@ -36,9 +36,9 @@ class Text implements \JsonSerializable
      * @param array $variables
      * @return Text
      */
-    public function text(string $text, array $variables = []): self
+    public function text($text, array $variables = [])
     {
-        $this->fillTemplate($text, $variables);
+        $this->fillTemplate((string) $text, $variables);
 
         return $this;
     }
@@ -47,7 +47,7 @@ class Text implements \JsonSerializable
     /**
      * @return string
      */
-    public function getText(): string
+    public function getText()
     {
         return (string) $this->text;
     }
@@ -58,14 +58,14 @@ class Text implements \JsonSerializable
      * @param array $variables
      * @return Text
      */
-    private function fillTemplate(string $text, array $variables = []): self
+    private function fillTemplate($text, array $variables = [])
     {
         $variables = array_combine(
             array_map(function($key){ return '<'.$key.'>'; }, array_keys($variables)),
             $variables
         );
 
-        $this->text = count($variables) > 0 ? strtr($text, $variables) : $text;
+        $this->text = count($variables) > 0 ? strtr((string) $text, $variables) : ((string) $text);
 
         return $this;
     }
@@ -74,7 +74,7 @@ class Text implements \JsonSerializable
     /**
      * @return string
      */
-    public function __toString(): string
+    public function __toString()
     {
         return $this->getText();
     }
@@ -83,7 +83,7 @@ class Text implements \JsonSerializable
     /**
      * @return string
      */
-    public function jsonSerialize(): string
+    public function jsonSerialize()
     {
         return (string) $this;
     }

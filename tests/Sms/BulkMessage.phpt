@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: Nette\Sms\BulkMessage
@@ -8,7 +8,7 @@
 
 namespace Test;
 
-use BulkGate\Sms\{BulkMessage, Message};
+use BulkGate\Sms\BulkMessage, BulkGate\Sms\Message;
 use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: Nette\Sms\Message
@@ -19,8 +19,8 @@ $iso = 'CZ';
 
 $message = new Sms\Message($number, $text);
 
-Assert::type(Sms\Message\PhoneNumber::class, $message->getPhoneNumber());
-Assert::type(Sms\Message\Text::class, $message->getText());
+Assert::type("BulkGate\\Sms\\Message\\PhoneNumber", $message->getPhoneNumber());
+Assert::type("BulkGate\\Sms\\Message\\Text", $message->getText());
 
 Assert::same($text, (string) $message->getText());
 Assert::same('420608123456', (string) $message->getPhoneNumber());
@@ -33,7 +33,7 @@ Assert::same('cz', $message->getPhoneNumber()->getIso());
 
 Assert::same('420608123456: test message first second', (string) $message);
 
-Assert::type(Sms\Message\PhoneNumber::class, $message->getPhoneNumber());
-Assert::type(Sms\Message\Text::class, $message->getText());
+Assert::type("BulkGate\\Sms\\Message\\PhoneNumber", $message->getPhoneNumber());
+Assert::type("BulkGate\\Sms\\Message\\Text", $message->getText());
 
 Assert::same(Sms\Message::TYPE, $message->getType());

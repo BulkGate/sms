@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -38,7 +38,7 @@ class Message implements IMessage, \JsonSerializable
      * @param null|string $iso
      * @return Message
      */
-	public function phoneNumber($phone_number, ?string $iso = null): self
+	public function phoneNumber($phone_number, $iso = null)
 	{
         if($phone_number instanceof BulkGate\Sms\Message\PhoneNumber)
         {
@@ -58,7 +58,7 @@ class Message implements IMessage, \JsonSerializable
      * @param array $variables
      * @return Message
      */
-	public function text($text, array $variables = []): self
+	public function text($text, array $variables = [])
 	{
         if($text instanceof BulkGate\Sms\Message\Text)
         {
@@ -76,7 +76,7 @@ class Message implements IMessage, \JsonSerializable
     /**
      * @return Message\PhoneNumber
      */
-	public function getPhoneNumber(): BulkGate\Sms\Message\PhoneNumber
+	public function getPhoneNumber()
     {
         return $this->phone_number;
     }
@@ -85,7 +85,7 @@ class Message implements IMessage, \JsonSerializable
     /**
      * @return Message\Text
      */
-	public function getText(): BulkGate\Sms\Message\Text
+	public function getText()
     {
         return $this->text;
     }
@@ -94,7 +94,7 @@ class Message implements IMessage, \JsonSerializable
     /**
      * @return string
      */
-	public function __toString(): string
+	public function __toString()
 	{
 		return (string) $this->phone_number . ': ' . (string) $this->text;
 	}
@@ -103,7 +103,7 @@ class Message implements IMessage, \JsonSerializable
     /**
      * @return array
      */
-	public function toArray(): array
+	public function toArray()
     {
         return [
             self::NUMBER => $this->phone_number,
@@ -115,7 +115,7 @@ class Message implements IMessage, \JsonSerializable
     /**
      * @return array
      */
-	public function jsonSerialize(): array
+	public function jsonSerialize()
 	{
 		return $this->toArray();
 	}
@@ -124,7 +124,7 @@ class Message implements IMessage, \JsonSerializable
     /**
      * @return string
      */
-	public function getType(): string
+	public function getType()
 	{
 		return self::TYPE;
 	}

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -35,7 +35,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
     /**
      * @param Message $message
      */
-	public function addMessage(Message $message): void
+	public function addMessage(Message $message)
 	{
         $this->array[] = $message;
 	}
@@ -44,7 +44,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
     /**
      * @return string
      */
-	public function __toString(): string
+	public function __toString()
 	{
 		$s = '';
 
@@ -59,7 +59,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
     /**
      * @return array
      */
-    public function toArray(): array
+    public function toArray()
 	{
 		$output = [];
 
@@ -86,7 +86,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
     /**
      * @return int
      */
-    public function count(): int
+    public function count()
 	{
 		return (int) count($this->array);
     }
@@ -95,7 +95,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
     /**
      * @return string
      */
-	public function getType(): string
+	public function getType()
 	{
 		return self::TYPE;
 	}

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: Nette\Sms\SenderSettings\CountrySenderID
@@ -9,7 +9,7 @@
 namespace Test;
 
 use BulkGate;
-use BulkGate\Sms\SenderSettings\{CountrySenderID, InvalidGateException};
+use BulkGate\Sms\SenderSettings\CountrySenderID;
 use Tester\Assert;
 
 require __DIR__ . '/../../bootstrap.php';
@@ -32,12 +32,12 @@ Assert::same([
 
 Assert::exception(function () {
 	new CountrySenderID('CZ', -1, '');
-}, InvalidGateException::class, 'Gate must be in interval <0, 4>');
+}, "BulkGate\\Sms\\SenderSettings\\InvalidGateException", 'Gate must be in interval <0, 4>');
 
 Assert::exception(function () {
 	new CountrySenderID('CZ', 5, '');
-}, InvalidGateException::class, 'Gate must be in interval <0, 4>');
+}, "BulkGate\\Sms\\SenderSettings\\InvalidGateException", 'Gate must be in interval <0, 4>');
 
 Assert::exception(function () {
 	new CountrySenderID('CZ', 125, '');
-}, InvalidGateException::class, 'Gate must be in interval <0, 4>');
+}, "BulkGate\\Sms\\SenderSettings\\InvalidGateException", 'Gate must be in interval <0, 4>');

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: Nette\Sms\SenderSettings\StaticSenderSettings
@@ -8,7 +8,7 @@
 
 namespace Test;
 
-use BulkGate\Sms\SenderSettings\{Gate, StaticSenderSettings, InvalidSenderException};
+use BulkGate\Sms\SenderSettings\Gate, BulkGate\Sms\SenderSettings\StaticSenderSettings;
 use Tester\Assert;
 
 
@@ -58,13 +58,13 @@ Assert::same($own_number, $settings->toArray());
 foreach (['Nette framework', 'NF'] as $sender) {
 	Assert::exception(function () use ($settings, $sender) {
 		$settings->textSender($sender);
-	}, InvalidSenderException::class, 'Text sender length must be between 3 and 13 characters (' . strlen($sender) . ' characters given)');
+	}, "BulkGate\\Sms\\SenderSettings\\InvalidSenderException", 'Text sender length must be between 3 and 13 characters (' . strlen($sender) . ' characters given)');
 }
 
 foreach (['', '   '] as $sender) {
 	Assert::exception(function () use ($settings, $sender) {
 		$settings->ownNumber($sender);
-	}, InvalidSenderException::class, 'Empty own number value');
+	}, "BulkGate\\Sms\\SenderSettings\\InvalidSenderException", 'Empty own number value');
 }
 
 $settings = new StaticSenderSettings(Gate::GATE_SYSTEM_NUMBER);
@@ -81,4 +81,4 @@ Assert::same($own_number, $settings->toArray());
 
 Assert::exception(function () {
 	new StaticSenderSettings('Nette_sender');
-}, InvalidSenderException::class, 'Unknown sender type '.'Nette_sender');
+}, "BulkGate\\Sms\\SenderSettings\\InvalidSenderException", 'Unknown sender type '.'Nette_sender');

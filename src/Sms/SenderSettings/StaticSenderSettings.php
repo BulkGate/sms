@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -25,7 +25,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
      * @param string $type
      * @param string $value
      */
-	public function __construct(string $type = Gate::GATE_SYSTEM_NUMBER, string $value = '')
+	public function __construct($type = Gate::GATE_SYSTEM_NUMBER, $value = '')
 	{
 		switch ($type) {
 			case Gate::GATE_SYSTEM_NUMBER:
@@ -47,14 +47,14 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 	}
 
 
-	public function systemNumber(): void
+	public function systemNumber()
 	{
 		$this->type = Gate::GATE_SYSTEM_NUMBER;
 		$this->value = '';
 	}
 
 
-	public function shortCode(): void
+	public function shortCode()
 	{
 		$this->type = Gate::GATE_SHORT_CODE;
 		$this->value = '';
@@ -64,7 +64,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 	/**
 	 * @param string $value
 	 */
-	public function textSender(string $value): void
+	public function textSender($value)
 	{
 		if (strlen((string) $value) >= 3 && strlen((string) $value) <= 11)
 		{
@@ -81,7 +81,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 	/**
 	 * @param string $value
 	 */
-	public function ownNumber(string $value): void
+	public function ownNumber($value)
 	{
 		if (strlen((string) trim($value)) > 0)
 		{
@@ -98,7 +98,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 	/**
 	 * @return array
 	 */
-	public function toArray(): array
+	public function toArray()
 	{
 		return [
 		    'static' => [
@@ -113,7 +113,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
     /**
      * @return array
      */
-	public function jsonSerialize(): array
+	public function jsonSerialize()
     {
         return $this->toArray();
     }

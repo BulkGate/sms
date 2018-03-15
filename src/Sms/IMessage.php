@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -21,17 +21,17 @@ interface IMessage
     /**
      * @return string
      */
-	public function __toString(): string ;
+	public function __toString();
 
 
     /**
      * @return string
      */
-	public function getType(): string;
+	public function getType();
 
 
     /**
      * @return array
      */
-    public function toArray(): array;
+    public function toArray();
 }

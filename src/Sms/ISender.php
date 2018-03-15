@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -7,8 +7,8 @@
 
 namespace BulkGate\Sms;
 
-use BulkGate\Message\{Response};
-use BulkGate\Sms\SenderSettings\{ISenderSettings};
+use BulkGate\Message\Response;
+use BulkGate\Sms\SenderSettings\ISenderSettings;
 
 interface ISender
 {
@@ -25,33 +25,33 @@ interface ISender
 	 * @param bool $unicode
 	 * @return ISender
 	 */
-	public function unicode(bool $unicode = true): ISender;
+	public function unicode($unicode = true);
 
 
     /**
      * @param bool $flash
      * @return ISender
      */
-	public function flash(bool $flash = true): ISender;
+	public function flash($flash = true);
 
 
     /**
      * @param ISenderSettings $senderSettings
      * @return ISender
      */
-	public function setSenderSettings(ISenderSettings $senderSettings): ISender;
+	public function setSenderSettings(ISenderSettings $senderSettings);
 
 
     /**
      * @param string $country
      * @return ISender
      */
-	public function setDefaultCountry(string $country): Isender;
+	public function setDefaultCountry($country);
 
 
     /**
      * @param IMessage $message
      * @return Response
      */
-    public function send(IMessage $message): Response;
+    public function send(IMessage $message);
 }

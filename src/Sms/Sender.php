@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -8,8 +8,8 @@
 namespace BulkGate\Sms;
 
 use BulkGate;
-use BulkGate\Message\{IConnection, Response, Request};
-use BulkGate\Sms\SenderSettings\{ISenderSettings};
+use BulkGate\Message\IConnection, BulkGate\Message\Response, BulkGate\Message\Request;
+use BulkGate\Sms\SenderSettings\ISenderSettings;
 
 class Sender implements ISender
 {
@@ -44,9 +44,9 @@ class Sender implements ISender
      * @param bool $unicode
      * @return ISender
      */
-	public function unicode(bool $unicode = true): ISender
+	public function unicode($unicode = true)
 	{
-		$this->unicode = $unicode;
+		$this->unicode = (bool) $unicode;
 
 		return $this;
 	}
@@ -56,9 +56,9 @@ class Sender implements ISender
      * @param bool $flash
      * @return ISender
      */
-	public function flash(bool $flash = true): ISender
+	public function flash($flash = true)
 	{
-		$this->flash = $flash;
+		$this->flash = (bool) $flash;
 
 		return $this;
 	}
@@ -68,7 +68,7 @@ class Sender implements ISender
      * @param ISenderSettings $senderSettings
      * @return ISender
      */
-    public function setSenderSettings(ISenderSettings $senderSettings): ISender
+    public function setSenderSettings(ISenderSettings $senderSettings)
 	{
 		$this->senderSettings = $senderSettings;
 
@@ -76,9 +76,9 @@ class Sender implements ISender
 	}
 
 
-	public function setDefaultCountry(string $country): Isender
+	public function setDefaultCountry($country)
     {
-        if(preg_match('~^[a-zA-Z]{2}$~', $country))
+        if(preg_match('~^[a-zA-Z]{2}$~', (string) $country))
         {
             $this->defaultCountry = strtolower($country);
             return $this;
@@ -91,7 +91,7 @@ class Sender implements ISender
      * @param IMessage $message
      * @return Response
      */
-	public function send(IMessage $message): Response
+	public function send(IMessage $message)
 	{
 	    $this->fillDefaultCountryIso($message);
 

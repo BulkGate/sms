@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 // The Nette Tester command-line runner can be
 // invoked through the command: ../vendor/bin/tester .

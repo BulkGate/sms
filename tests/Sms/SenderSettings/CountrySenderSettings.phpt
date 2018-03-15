@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: Nette\Sms\SenderSettings\CountrySenderSettings
@@ -9,7 +9,7 @@
 namespace Test;
 
 use BulkGate;
-use BulkGate\Sms\SenderSettings\{CountrySenderID, CountrySenderSettings, InvalidGateException};
+use BulkGate\Sms\SenderSettings\CountrySenderID, BulkGate\Sms\SenderSettings\CountrySenderSettings;
 use Tester\Assert;
 
 require __DIR__ . '/../../bootstrap.php';
@@ -43,4 +43,4 @@ Assert::equal($array, $settings->toArray());
 
 Assert::exception(function () use ($settings) {
 	$settings->add('cze');
-}, InvalidGateException::class, 'Invalid message ISO country code');
+}, "BulkGate\\Sms\\SenderSettings\\InvalidGateException", 'Invalid message ISO country code');

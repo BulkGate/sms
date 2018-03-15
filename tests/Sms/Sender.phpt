@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: Nette\Sms\Message
@@ -26,7 +26,7 @@ $connection = new class () implements IConnection
     /** @var array */
     private $responses = [];
 
-	public function send(Request $request): Response
+	public function send(Request $request)
 	{
         $this->responses[] = (object) ['action' => $request->getAction(), 'request' => $request->getRawData(), 'response' => null];
 
@@ -34,7 +34,7 @@ $connection = new class () implements IConnection
 	}
 
 
-	public function getInfo(bool $delete = false): array
+	public function getInfo($delete = false)
 	{
         $responses = $this->responses;
 
@@ -48,7 +48,7 @@ $connection = new class () implements IConnection
 
 $settings = new class () implements ISenderSettings
 {
-	public function toArray(): array
+	public function toArray()
 	{
 		return ['static' => (object) [
 		    Gate::ISO    => 'static',

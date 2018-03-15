@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -29,11 +29,11 @@ class CountrySenderID
      * @param int $gate
      * @param string $sender
      */
-	public function __construct(string $iso, int $gate = Gate::GATE1, string $sender = '')
+	public function __construct($iso, $gate = Gate::GATE1, $sender = '')
 	{
-		$this->iso = strtolower($iso);
-		$this->gate = $gate;
-		$this->sender = $sender;
+		$this->iso = strtolower((string) $iso);
+		$this->gate = (int) $gate;
+		$this->sender = (string) $sender;
 
 		if ((int) $this->gate < Gate::GATE1 || (int) $this->gate > Gate::GATE5)
 		{
@@ -45,7 +45,7 @@ class CountrySenderID
 	/**
 	 * @return string
 	 */
-	public function getIso(): string
+	public function getIso()
 	{
 		return $this->iso;
 	}
@@ -54,7 +54,7 @@ class CountrySenderID
 	/**
 	 * @return array
 	 */
-	public function toArray(): array
+	public function toArray()
 	{
 		return [
 			Gate::ISO => (string) $this->iso,

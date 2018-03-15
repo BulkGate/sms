@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -39,7 +39,7 @@ class CountrySenderSettings implements ISenderSettings, \JsonSerializable
      * @param string $sender
      * @return CountrySenderSettings
      */
-	public function add($iso, int $gate = Gate::GATE1, string $sender = ''): self
+	public function add($iso, $gate = Gate::GATE1, $sender = '')
 	{
 		if ($iso instanceof CountrySenderID)
 		{
@@ -57,7 +57,7 @@ class CountrySenderSettings implements ISenderSettings, \JsonSerializable
 		}
 		elseif (strlen($iso) === 2)
         {
-			$this->settings[strtolower($iso)] = new CountrySenderID($iso, $gate, $sender);
+			$this->settings[strtolower($iso)] = new CountrySenderID($iso, (int) $gate, (string) $sender);
 		}
 		else
         {
@@ -71,7 +71,7 @@ class CountrySenderSettings implements ISenderSettings, \JsonSerializable
 	 * @param string $iso
 	 * @return bool
 	 */
-	public function remove(string $iso): bool
+	public function remove($iso)
 	{
 		$iso = strtolower($iso);
 
@@ -87,7 +87,7 @@ class CountrySenderSettings implements ISenderSettings, \JsonSerializable
 	/**
 	 * @return array
 	 */
-	public function toArray(): array
+	public function toArray()
 	{
 		$array = [];
 

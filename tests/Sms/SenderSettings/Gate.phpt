@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: BulkGate\Sms\SenderSettings\Gate
@@ -11,7 +11,7 @@ namespace Test;
 use BulkGate\Sms\SenderSettings\Gate;
 use Tester\Assert;
 
-require __DIR__ . '/../bootstrap.php';
+require __DIR__ . '/../../bootstrap.php';
 
 Assert::same('iso', Gate::ISO);
 Assert::same('gate', Gate::GATE);

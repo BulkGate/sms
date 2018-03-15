@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * Test: BulkGate\Message\Connection
@@ -39,11 +39,11 @@ Assert::null($phone->getIso());
 
 Assert::exception(function () use ($phone) {
     $phone->iso('a');
-}, BulkGate\Sms\Message\InvalidPhoneNumberException::class);
+}, "BulkGate\\Sms\\Message\\InvalidPhoneNumberException");
 
 Assert::exception(function () use ($phone) {
     $phone->iso('cze');
-}, BulkGate\Sms\Message\InvalidPhoneNumberException::class);
+}, "BulkGate\\Sms\\Message\\InvalidPhoneNumberException");
 
 $phone->iso(BulkGate\Sms\Country::CZECH_REPUBLIC);
 

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * @author Lukáš Piják 2018 TOPefekt s.r.o.
@@ -26,9 +26,9 @@ class PhoneNumber implements \JsonSerializable
      * @param string $phone_number
      * @param null|string $iso
      */
-    public function __construct(string $phone_number, ?string $iso = null)
+    public function __construct($phone_number, $iso = null)
     {
-        $this->phoneNumber($phone_number);
+        $this->phoneNumber((string) $phone_number);
         $this->iso($iso);
     }
 
@@ -37,9 +37,9 @@ class PhoneNumber implements \JsonSerializable
      * @param string $phone_number
      * @return PhoneNumber
      */
-    public function phoneNumber(string $phone_number): self
+    public function phoneNumber($phone_number)
     {
-        $this->phone_number = $this->formatNumber($phone_number);
+        $this->phone_number = $this->formatNumber((string) $phone_number);
 
         return $this;
     }
@@ -49,11 +49,11 @@ class PhoneNumber implements \JsonSerializable
      * @param null|string $iso
      * @return PhoneNumber
      */
-    public function iso(?string $iso): self
+    public function iso($iso)
     {
         if ($iso === null || strlen($iso) === 2 || strlen($iso) === 0)
         {
-            $this->iso = $iso !== null ? strtolower($iso) : $iso;
+            $this->iso = $iso !== null ? strtolower((string) $iso) : $iso;
 
             return $this;
         }
@@ -65,9 +65,9 @@ class PhoneNumber implements \JsonSerializable
      * @param string $phone_number
      * @return string
      */
-    private function formatNumber(string $phone_number): string
+    private function formatNumber($phone_number)
     {
-        $phone_number = preg_replace(['/ /', '/-/', "/\(/", "/\)/", "/\./", "/\//", "/\\\/", "/,/"], ['', '', '', '', '', '', '', ''], trim($phone_number));
+        $phone_number = preg_replace(['/ /', '/-/', "/\(/", "/\)/", "/\./", "/\//", "/\\\/", "/,/"], ['', '', '', '', '', '', '', ''], trim((string) $phone_number));
 
         if (substr($phone_number, 0, 2) === '00')
         {
@@ -85,12 +85,12 @@ class PhoneNumber implements \JsonSerializable
     /**
      * @return null|string
      */
-    public function getIso():? string
+    public function getIso()
     {
-        return $this->iso;
+        return $this->iso !== null ? ((string) $this->iso) : null;
     }
 
-    public function getPhoneNumber(): string
+    public function getPhoneNumber()
     {
         return (string) $this->phone_number;
     }
@@ -99,7 +99,7 @@ class PhoneNumber implements \JsonSerializable
     /**
      * @return string
      */
-    public function __toString(): string
+    public function __toString()
     {
         return $this->getPhoneNumber();
     }
@@ -108,11 +108,11 @@ class PhoneNumber implements \JsonSerializable
     /**
      * @return array
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize()
     {
         return [
             Sms\IMessage::NUMBER => $this->phone_number,
-            Sms\IMessage::ISO          => $this->iso
+            Sms\IMessage::ISO    => $this->iso
         ];
     }
 }
