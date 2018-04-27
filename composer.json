@@ -20,7 +20,8 @@
     "bulkgate/utils": "^2.0"
   },
   "require-dev": {
-    "nette/tester": "~2.0"
+    "nette/tester": "~2.0",
+    "tracy/tracy": "^2.4"
   },
   "autoload": {
     "classmap": ["src/"]

@@ -109,3 +109,33 @@ Assert::equal([(object) [
     'response' => null
 ]], $connection->getInfo(true));
 
+$sender->checkPhoneNumbers("420603123456");
+
+Assert::equal([(object) [
+	'action' => 'check-phone-numbers',
+	'request' => [
+		'phoneNumbers' => [new Message\PhoneNumber('420603123456')],
+	],
+	'response' => null
+]], $connection->getInfo(true));
+
+$sender->checkPhoneNumbers(new Message\PhoneNumber("420603123457"));
+
+Assert::equal([(object) [
+	'action' => 'check-phone-numbers',
+	'request' => [
+		'phoneNumbers' => [new Message\PhoneNumber('420603123457')],
+	],
+	'response' => null
+]], $connection->getInfo(true));
+
+$sender->checkPhoneNumbers([new Message\PhoneNumber("420603123458"), '420603123459']);
+
+Assert::equal([(object) [
+	'action' => 'check-phone-numbers',
+	'request' => [
+		'phoneNumbers' => [new Message\PhoneNumber('420603123458'), new Message\PhoneNumber('420603123459')],
+	],
+	'response' => null
+]], $connection->getInfo(true));
+

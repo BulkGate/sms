@@ -20,3 +20,7 @@ class InvalidMessageException extends SmsException
 class InvalidIsoCodeException extends SmsException
 {
 }
+
+class InvalidPhoneNumbersException extends SmsException
+{
+}

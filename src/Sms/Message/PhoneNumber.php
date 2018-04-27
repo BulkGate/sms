@@ -45,10 +45,11 @@ class PhoneNumber implements \JsonSerializable
     }
 
 
-    /**
-     * @param null|string $iso
-     * @return PhoneNumber
-     */
+	/**
+	 * @param null|string $iso
+	 * @return PhoneNumber
+	 * @throws InvalidPhoneNumberException
+	 */
     public function iso(?string $iso): self
     {
         if ($iso === null || strlen($iso) === 2 || strlen($iso) === 0)
