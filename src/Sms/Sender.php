@@ -76,6 +76,11 @@ class Sender implements ISender
 	}
 
 
+	/**
+	 * @param string $country
+	 * @return ISender
+	 * @throws InvalidIsoCodeException
+	 */
 	public function setDefaultCountry($country)
     {
         if(preg_match('~^[a-zA-Z]{2}$~', (string) $country))
@@ -103,6 +108,51 @@ class Sender implements ISender
 		], true));
 	}
 
+
+	/**
+	 * @param array|Message\PhoneNumber|string $phoneNumbers
+	 * @param null|string $iso
+	 * @return Response
+	 * @throws BulkGate\Exception
+	 */
+	public function checkPhoneNumbers($phoneNumbers, $iso = null)
+	{
+		$data = [];
+
+		if(is_string($phoneNumbers))
+		{
+			$data[] = new BulkGate\Sms\Message\PhoneNumber($phoneNumbers, $iso);
+		}
+		elseif(is_array($phoneNumbers))
+		{
+			foreach($phoneNumbers as $phoneNumber)
+			{
+				if($phoneNumber instanceof BulkGate\Sms\Message\PhoneNumber)
+				{
+					$data[] = $phoneNumber;
+				}
+				elseif(is_string($phoneNumber))
+				{
+					$data[] = new BulkGate\Sms\Message\PhoneNumber($phoneNumber, $iso);
+				}
+			}
+		}
+		elseif ($phoneNumbers instanceof BulkGate\Sms\Message\PhoneNumber)
+		{
+			$data[] = $phoneNumbers;
+		}
+
+		if(count($data) > 0)
+		{
+			return $this->connection->send(new Request('check-phone-numbers', ['phoneNumbers' => $data], true));
+		}
+		throw new InvalidPhoneNumbersException("Request does not contain any phone numbers (int|string|array|BulkGate\\Sms\\Message\\PhoneNumber)");
+	}
+
+
+	/**
+	 * @param IMessage $message
+	 */
 	private function fillDefaultCountryIso(IMessage $message)
     {
         if($this->defaultCountry !== null)

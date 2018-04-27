@@ -10,6 +10,7 @@ namespace BulkGate\Sms;
 use BulkGate\Message\Response;
 use BulkGate\Sms\SenderSettings\ISenderSettings;
 
+
 interface ISender
 {
 	const MESSAGE = 'message';
@@ -53,5 +54,13 @@ interface ISender
      * @param IMessage $message
      * @return Response
      */
-    public function send(IMessage $message);
+   public function send(IMessage $message);
+
+
+	/**
+	 * @param array|Message\PhoneNumber|string $phoneNumbers
+	 * @param null|string $iso
+	 * @return Response
+	 */
+    public function checkPhoneNumbers($phoneNumbers, $iso = null);
 }
