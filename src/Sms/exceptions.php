@@ -7,9 +7,9 @@
 
 namespace BulkGate\Sms;
 
-use Nette;
+use BulkGate;
 
-class SmsException extends Nette\InvalidStateException
+class SmsException extends BulkGate\Exception
 {
 }
 
