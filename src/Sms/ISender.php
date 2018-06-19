@@ -8,7 +8,6 @@
 namespace BulkGate\Sms;
 
 use BulkGate\Message\{Response};
-use BulkGate\Sms\Message\PhoneNumber;
 use BulkGate\Sms\SenderSettings\{ISenderSettings};
 
 interface ISender

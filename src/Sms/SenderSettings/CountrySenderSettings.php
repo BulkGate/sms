@@ -34,10 +34,11 @@ class CountrySenderSettings implements ISenderSettings, \JsonSerializable
 
 
     /**
-     * @param $iso
+     * @param string|array|CountrySenderID $iso
      * @param int $gate
      * @param string $sender
      * @return CountrySenderSettings
+     * @throws InvalidGateException
      */
 	public function add($iso, int $gate = Gate::GATE1, string $sender = ''): self
 	{

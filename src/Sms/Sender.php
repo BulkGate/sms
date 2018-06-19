@@ -146,14 +146,14 @@ class Sender implements ISender
 		{
 			return $this->connection->send(new Request('check-phone-numbers', ['phoneNumbers' => $data], true));
 		}
-		throw new InvalidPhoneNumbersException("Request does not contain any phone numbers (int|string|array|BulkGate\\Sms\\Message\\PhoneNumber)");
+		throw new InvalidPhoneNumbersException("Request does not contain any phone numbers (string|array|BulkGate\\Sms\\Message\\PhoneNumber)");
 	}
 
 
 	/**
 	 * @param IMessage $message
 	 */
-	private function fillDefaultCountryIso(IMessage $message)
+	private function fillDefaultCountryIso(IMessage $message): void
     {
         if($this->defaultCountry !== null)
         {

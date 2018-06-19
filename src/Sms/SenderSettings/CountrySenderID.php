@@ -28,6 +28,7 @@ class CountrySenderID
      * @param string $iso
      * @param int $gate
      * @param string $sender
+     * @throws InvalidGateException
      */
 	public function __construct(string $iso, int $gate = Gate::GATE1, string $sender = '')
 	{
