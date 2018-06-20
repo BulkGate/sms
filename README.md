@@ -5,7 +5,9 @@ BulkGate SMS - PHP SDK
 [![Latest Stable Version](https://img.shields.io/github/release/bulkgate/sms.svg)](https://github.com/bulkgate/sms/releases)
 [![License](https://img.shields.io/github/license/bulkgate/sms.svg)](https://github.com/BulkGate/sms/blob/master/LICENSE)
 
-### [Documentation](https://help.bulkgate.com/docs/en/php-sdk-instalation.html)
+- [Documentation](https://help.bulkgate.com/docs/en/php-sdk-instalation.html)
+- [BulkGate portal](https://portal.bulkgate.com/) 
+- [BulkGate](www.bulkgate.com)
 
 ## Instalation
 
