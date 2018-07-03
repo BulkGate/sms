@@ -21,6 +21,15 @@ class Message implements IMessage, \JsonSerializable
 	/** @var BulkGate\Sms\Message\Text */
 	private $text;
 
+	/** @var string */
+	private $status = 'preparation';
+
+	/** @var string|null */
+	private $id = null;
+
+	/** @var float */
+	private $price = 0.0;
+
 
     /**
      * Message constructor.
@@ -74,6 +83,22 @@ class Message implements IMessage, \JsonSerializable
 
 
     /**
+     * @param string $status
+     * @param string|null $id
+     * @param float $price
+     * @return $this
+     */
+    public function setStatus(string $status, ?string $id = null, float $price = 0.0): self
+    {
+        $this->status = $status;
+        $this->id = $id;
+        $this->price = $price;
+
+        return $this;
+    }
+
+
+    /**
      * @return Message\PhoneNumber
      */
 	public function getPhoneNumber(): BulkGate\Sms\Message\PhoneNumber
@@ -94,6 +119,32 @@ class Message implements IMessage, \JsonSerializable
     /**
      * @return string
      */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getId():? string
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    /**
+     * @return string
+     */
 	public function __toString(): string
 	{
 		return (string) $this->phone_number . ': ' . (string) $this->text;
@@ -108,9 +159,11 @@ class Message implements IMessage, \JsonSerializable
         return [
             self::NUMBER => $this->phone_number,
             self::TEXT => $this->text,
+            self::STATUS => $this->status,
+            self::PRICE => $this->price,
+            self::ID => $this->id
         ];
     }
-
 
     /**
      * @return array
@@ -119,7 +172,6 @@ class Message implements IMessage, \JsonSerializable
 	{
 		return $this->toArray();
 	}
-
 
     /**
      * @return string

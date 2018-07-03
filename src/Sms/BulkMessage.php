@@ -42,6 +42,28 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
 
 
     /**
+     * @param BulkGate\Message\Response $response
+     */
+	public function setStatus(BulkGate\Message\Response $response): void
+    {
+        foreach($this->array as $key => $item)
+        {
+            if($item instanceof Message)
+            {
+                if(isset($response->response) && is_array($response->response) && isset($response->response[$key]))
+                {
+                    $item->setStatus($response->response[$key]['status'] ?? 'error', $response->response[$key]['sms_id'] ?? '', $response->response[$key]['price'] ?? 0.0);
+                }
+                else
+                {
+                    $item->setStatus('error');
+                }
+            }
+        }
+    }
+
+
+    /**
      * @return string
      */
 	public function __toString(): string

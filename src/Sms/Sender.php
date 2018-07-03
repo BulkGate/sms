@@ -100,12 +100,26 @@ class Sender implements ISender
 	{
 	    $this->fillDefaultCountryIso($message);
 
-		return $this->connection->send(new Request($message->getType(), [
+		$response = $this->connection->send(new Request($message->getType(), [
 			self::MESSAGE => $message,
 			self::SENDER => $this->senderSettings instanceof ISenderSettings ? $this->senderSettings : [],
 			self::UNICODE => $this->unicode,
 			self::FLASH => $this->flash,
 		], true));
+
+        if($message instanceof BulkMessage)
+        {
+            if($response->isSuccess())
+            {
+                $message->setStatus($response);
+            }
+        }
+        else if($message instanceof Message)
+        {
+            $message->setStatus($response->status ?? 'error', $response->sms_id ?? '', $response->price ?? 0.0);
+        }
+
+        return $response;
 	}
 
 

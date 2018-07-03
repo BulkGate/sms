@@ -34,7 +34,7 @@ $connection = new class () implements IConnection
 	}
 
 
-	public function getInfo($delete = false): array
+	public function getInfo(bool $delete = false): array
 	{
         $responses = $this->responses;
 
