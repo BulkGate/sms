@@ -9,6 +9,7 @@
 namespace Test;
 
 use BulkGate\Sms\BulkMessage, BulkGate\Sms\Message;
+
 use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
@@ -29,8 +30,8 @@ Assert::same('bulk-sms', $bulk->getType());
 
 Assert::equal(
 	[
-		['number' => $phone_number, 'text' => $bulk->get(0)->getText()],
-		['number' => $phone_number_new, 'text' => $bulk->get(1)->getText()],
+		['number' => $phone_number, 'text' => $bulk->get(0)->getText(), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
+		['number' => $phone_number_new, 'text' => $bulk->get(1)->getText(), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
 	],
 	$bulk->toArray()
 );
@@ -42,8 +43,8 @@ $bulk->addMessage($message);
 
 Assert::equal(
 	[
-		['number' => $phone_number, 'text' => new Message\Text($text)],
-		['number' => $phone_number_new, 'text' => new Message\Text($text_new)],
+		['number' => $phone_number, 'text' => new Message\Text($text), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
+		['number' => $phone_number_new, 'text' => new Message\Text($text_new), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
 		$message->toArray(),
 	],
 	$bulk->toArray()

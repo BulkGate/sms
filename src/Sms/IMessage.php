@@ -13,6 +13,12 @@ interface IMessage
 
 	const TEXT = 'text';
 
+	const PRICE = 'price';
+
+	const STATUS = 'status';
+
+	const ID = 'id';
+
 	const ISO = 'iso';
 
 	const VARIABLES = 'variables';
