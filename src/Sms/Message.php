@@ -124,7 +124,7 @@ class Message implements IMessage, \JsonSerializable
      */
 	public function getVariables($key = null)
     {
-        return isset($this->variables($key)) ? $this->variables($key) : null;
+        return isset($this->variables[$key]) ? $this->variables[$key] : null;
     }
 
 
