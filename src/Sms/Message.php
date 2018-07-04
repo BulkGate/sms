@@ -20,6 +20,9 @@ class Message implements IMessage, \JsonSerializable
 
 	/** @var BulkGate\Sms\Message\Text */
 	private $text;
+	
+	/** @var BulkGate\Sms\Message\Text
+	private $vairables;
 
 	/** @var string */
 	private $status = 'preparation';
@@ -69,6 +72,7 @@ class Message implements IMessage, \JsonSerializable
      */
 	public function text($text, array $variables = []): self
 	{
+	$this->variables = $variables;
         if($text instanceof BulkGate\Sms\Message\Text)
         {
             $this->text = $text;
@@ -113,6 +117,14 @@ class Message implements IMessage, \JsonSerializable
 	public function getText(): BulkGate\Sms\Message\Text
     {
         return $this->text;
+    }
+
+    /**
+     * @return Message\Text variables
+     */
+	public function getVariables($key = null)
+    {
+        return isset($this->variables($key)) ? $this->variables($key) : null;
     }
 
 
