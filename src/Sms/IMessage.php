@@ -7,37 +7,6 @@
 
 namespace BulkGate\Sms;
 
-interface IMessage
-{
-	const NUMBER = 'number';
+use BulkGate;
 
-	const TEXT = 'text';
-
-	const PRICE = 'price';
-
-	const STATUS = 'status';
-
-	const ID = 'id';
-
-	const ISO = 'iso';
-
-	const VARIABLES = 'variables';
-
-
-    /**
-     * @return string
-     */
-	public function __toString(): string ;
-
-
-    /**
-     * @return string
-     */
-	public function getType(): string;
-
-
-    /**
-     * @return array
-     */
-    public function toArray(): array;
-}
+class_alias(BulkGate\Message\IMessage::class, 'BulkGate\Sms\IMessage');

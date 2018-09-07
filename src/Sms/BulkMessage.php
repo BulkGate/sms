@@ -9,7 +9,7 @@ namespace BulkGate\Sms;
 
 use BulkGate;
 
-class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSerializable
+class BulkMessage extends BulkGate\Utils\Iterator implements BulkGate\Message\IMessage, \JsonSerializable
 {
 	use BulkGate\Strict;
 
@@ -64,6 +64,21 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
 
 
     /**
+     * @param int|null $timestamp
+     */
+    public function schedule(?int $timestamp = null): void
+    {
+        foreach($this->array as $item)
+        {
+            if($item instanceof BulkGate\Message\IMessage)
+            {
+                $item->schedule($timestamp);
+            }
+        }
+    }
+
+
+    /**
      * @return string
      */
 	public function __toString(): string
@@ -87,7 +102,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
 
 		foreach ($this->array as $message)
 		{
-			if ($message instanceof IMessage)
+			if ($message instanceof BulkGate\Message\IMessage)
 			{
 				$output[] = $message->toArray();
 			}

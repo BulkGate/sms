@@ -8,7 +8,6 @@
 namespace BulkGate\Sms\Message;
 
 use BulkGate;
-use BulkGate\Sms;
 
 class PhoneNumber implements \JsonSerializable
 {
@@ -112,8 +111,8 @@ class PhoneNumber implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            Sms\IMessage::NUMBER => $this->phone_number,
-            Sms\IMessage::ISO    => $this->iso
+            BulkGate\Message\IMessage::NUMBER => $this->phone_number,
+            BulkGate\Message\IMessage::ISO    => $this->iso
         ];
     }
 }

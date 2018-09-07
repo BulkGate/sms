@@ -93,10 +93,10 @@ class Sender implements ISender
 
 
     /**
-     * @param IMessage $message
+     * @param BulkGate\Message\IMessage $message
      * @return Response
      */
-	public function send(IMessage $message): Response
+	public function send(BulkGate\Message\IMessage $message): Response
 	{
 	    $this->fillDefaultCountryIso($message);
 
@@ -165,9 +165,9 @@ class Sender implements ISender
 
 
 	/**
-	 * @param IMessage $message
+	 * @param BulkGate\Message\IMessage $message
 	 */
-	private function fillDefaultCountryIso(IMessage $message): void
+	private function fillDefaultCountryIso(BulkGate\Message\IMessage $message): void
     {
         if($this->defaultCountry !== null)
         {

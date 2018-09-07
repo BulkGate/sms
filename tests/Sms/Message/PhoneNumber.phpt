@@ -47,4 +47,4 @@ Assert::exception(function () use ($phone) {
 
 $phone->iso(BulkGate\Sms\Country::CZECH_REPUBLIC);
 
-Assert::same('{"'.BulkGate\Sms\IMessage::NUMBER.'":"420603123456","'.BulkGate\Sms\IMessage::ISO.'":"cz"}', BulkGate\Utils\Json::encode($phone));
+Assert::same('{"'.BulkGate\Message\IMessage::NUMBER.'":"420603123456","'.BulkGate\Message\IMessage::ISO.'":"cz"}', BulkGate\Utils\Json::encode($phone));

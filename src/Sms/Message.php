@@ -9,7 +9,7 @@ namespace BulkGate\Sms;
 
 use BulkGate;
 
-class Message implements IMessage, \JsonSerializable
+class Message implements BulkGate\Message\IMessage, \JsonSerializable
 {
 	use BulkGate\Strict;
 
@@ -29,6 +29,9 @@ class Message implements IMessage, \JsonSerializable
 
 	/** @var float */
 	private $price = 0.0;
+
+	/** @var int|null */
+	private $scheduled = null;
 
 
     /**
@@ -142,6 +145,16 @@ class Message implements IMessage, \JsonSerializable
         return $this->price;
     }
 
+
+    /**
+     * @param int|null $timestamp
+     */
+    public function schedule(?int $timestamp = null): void
+    {
+        $this->scheduled = $timestamp;
+    }
+
+
     /**
      * @return string
      */
@@ -161,7 +174,8 @@ class Message implements IMessage, \JsonSerializable
             self::TEXT => $this->text,
             self::STATUS => $this->status,
             self::PRICE => $this->price,
-            self::ID => $this->id
+            self::ID => $this->id,
+            self::SCHEDULED => $this->scheduled
         ];
     }
 

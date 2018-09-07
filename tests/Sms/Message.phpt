@@ -40,10 +40,13 @@ Assert::same(Sms\Message::TYPE, $message->getType());
 
 $message->setStatus('accepted', 'id', 1.2);
 
+$message->schedule(1234);
+
 Assert::equal([
     'number' => $message->getPhoneNumber(),
     'text' => $message->getText(),
     'status' => 'accepted',
     'id' => 'id',
-    'price' => 1.2
+    'price' => 1.2,
+    'scheduled' => 1234,
 ], $message->toArray());
