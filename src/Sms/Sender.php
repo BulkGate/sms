@@ -116,7 +116,7 @@ class Sender implements ISender
         }
         else if($message instanceof Message)
         {
-            $message->setStatus($response->status ?? 'error', $response->sms_id ?? '', $response->price ?? 0.0);
+            $message->setStatus($response->status ?? 'error', $response->sms_id ?? '', $response->price ?? 0.0, $response->credit ?? 0.0);
         }
 
         return $response;
