@@ -156,7 +156,7 @@ class Message implements BulkGate\Message\IMessage, \JsonSerializable
      */
     public function getCredit()
     {
-        return $this->credit;
+        return (float) $this->credit;
     }
 
 
