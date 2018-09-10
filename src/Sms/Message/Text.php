@@ -16,6 +16,9 @@ class Text implements \JsonSerializable
     /** @var string */
     private $text = '';
 
+    /** @var array */
+    private $variables = [];
+
 
     /**
      * Text constructor.
@@ -34,11 +37,17 @@ class Text implements \JsonSerializable
     /**
      * @param string $text
      * @param array $variables
+     * @param bool $save_variables
      * @return Text
      */
-    public function text(string $text, array $variables = []): self
+    public function text(string $text, array $variables = [], bool $save_variables = false): self
     {
         $this->fillTemplate($text, $variables);
+
+        if($save_variables)
+        {
+            $this->variables = $variables;
+        }
 
         return $this;
     }
@@ -50,6 +59,20 @@ class Text implements \JsonSerializable
     public function getText(): string
     {
         return (string) $this->text;
+    }
+
+
+    /**
+     * @param null|string $key
+     * @return array|string|int|bool
+     */
+    public function getVariables(?string $key = null)
+    {
+        if($key !== null)
+        {
+            return isset($this->variables[$key]) ? $this->variables : null;
+        }
+        return $this->variables;
     }
 
 

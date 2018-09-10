@@ -40,3 +40,10 @@ $empty = new BulkGate\Sms\Message\Text();
 
 $test('HiSms', $empty->text("<hello><world>", ['hello' => 'Hi', 'world' => 'Sms']));
 
+$variables = new BulkGate\Sms\Message\Text("<hello><world>", ['hello' => 'Hi', 'world' => 'Sms']);
+Assert::equal([], $variables->getVariables());
+
+$variables->text("<hello><world>", ['hello' => 'Hi', 'world' => 'Sms'], true);
+Assert::equal(['hello' => 'Hi', 'world' => 'Sms'], $variables->getVariables());
+
+
