@@ -16,7 +16,7 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "bulkgate/message": "^1.1",
+    "bulkgate/message": ">=1.0.2 <3.0.0",
     "bulkgate/utils": "^1.0"
   },
   "require-dev": {
