@@ -30,6 +30,9 @@ class Message implements BulkGate\Message\IMessage, \JsonSerializable
 	/** @var float */
 	private $price = 0.0;
 
+	/** @var float */
+	private $credit = 0.0;
+
 	/** @var int|null */
 	private $scheduled = null;
 
@@ -89,13 +92,15 @@ class Message implements BulkGate\Message\IMessage, \JsonSerializable
      * @param string $status
      * @param string|null $id
      * @param float $price
+     * @param float $credit
      * @return $this
      */
-    public function setStatus(string $status, ?string $id = null, float $price = 0.0): self
+    public function setStatus(string $status, ?string $id = null, float $price = 0.0, float $credit = 0.0): self
     {
         $this->status = $status;
         $this->id = $id;
         $this->price = $price;
+        $this->credit = $credit;
 
         return $this;
     }
@@ -147,6 +152,15 @@ class Message implements BulkGate\Message\IMessage, \JsonSerializable
 
 
     /**
+     * @return float
+     */
+    public function getCredit(): float
+    {
+        return $this->credit;
+    }
+
+
+    /**
      * @param int|null $timestamp
      */
     public function schedule(?int $timestamp = null): void
@@ -174,6 +188,7 @@ class Message implements BulkGate\Message\IMessage, \JsonSerializable
             self::TEXT => $this->text,
             self::STATUS => $this->status,
             self::PRICE => $this->price,
+            self::CREDIT => $this->credit,
             self::ID => $this->id,
             self::SCHEDULED => $this->scheduled
         ];
