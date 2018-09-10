@@ -52,7 +52,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements BulkGate\Message\IM
             {
                 if(isset($response->response) && is_array($response->response) && isset($response->response[$key]))
                 {
-                    $item->setStatus($response->response[$key]['status'] ?? 'error', $response->response[$key]['sms_id'] ?? '', $response->response[$key]['price'] ?? 0.0, $response->response[$key]['credit'] ?? 0.0);
+                    $item->setStatus((string) ($response->response[$key]['status'] ?? 'error'), (string) ($response->response[$key]['sms_id'] ?? ''), (float) ($response->response[$key]['price'] ?? 0.0), (float) ($response->response[$key]['credit'] ?? 0.0));
                 }
                 else
                 {
