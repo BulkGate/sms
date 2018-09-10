@@ -9,7 +9,7 @@ namespace BulkGate\Sms;
 
 use BulkGate;
 
-class Message implements IMessage, \JsonSerializable
+class Message implements BulkGate\Message\IMessage, \JsonSerializable
 {
 	use BulkGate\Strict;
 
@@ -29,6 +29,12 @@ class Message implements IMessage, \JsonSerializable
 
 	/** @var float */
 	private $price = 0.0;
+
+	/** @var float */
+	private $credit = 0.0;
+
+	/** @var int|null */
+	private $scheduled = null;
 
 
     /**
@@ -86,13 +92,15 @@ class Message implements IMessage, \JsonSerializable
      * @param string $status
      * @param string|null $id
      * @param float $price
+     * @param float $credit
      * @return $this
      */
-    public function setStatus($status, $id = null, $price = 0.0)
+    public function setStatus($status, $id = null, $price = 0.0, $credit = 0.0)
     {
         $this->status = (string) $status;
         $this->id = $id !== null ? (string) $id : null;
         $this->price = (float) $price;
+        $this->credit = (float) $credit;
 
         return $this;
     }
@@ -144,6 +152,24 @@ class Message implements IMessage, \JsonSerializable
 
 
     /**
+     * @return float
+     */
+    public function getCredit()
+    {
+        return $this->credit;
+    }
+
+
+    /**
+     * @param int|null $timestamp
+     */
+    public function schedule($timestamp = null)
+    {
+        $this->scheduled = is_int($timestamp) ? (int) $timestamp : null;
+    }
+
+
+    /**
      * @return string
      */
 	public function __toString()
@@ -162,7 +188,9 @@ class Message implements IMessage, \JsonSerializable
             self::TEXT => $this->text,
             self::STATUS => $this->status,
             self::PRICE => $this->price,
-            self::ID => $this->id
+            self::CREDIT => $this->credit,
+            self::ID => $this->id,
+            self::SCHEDULED => $this->scheduled
         ];
     }
 

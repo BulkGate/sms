@@ -9,7 +9,7 @@ namespace BulkGate\Sms;
 
 use BulkGate;
 
-class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSerializable
+class BulkMessage extends BulkGate\Utils\Iterator implements BulkGate\Message\IMessage, \JsonSerializable
 {
 	use BulkGate\Strict;
 
@@ -55,12 +55,29 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
                     $item->setStatus(
                         isset($response->response[$key]['status']) ? $response->response[$key]['status'] : 'error',
                         isset($response->response[$key]['sms_id']) ? $response->response[$key]['sms_id'] : '',
-                        isset($response->response[$key]['price']) ? $response->response[$key]['price'] : 0.0);
+                        isset($response->response[$key]['price']) ? (float) $response->response[$key]['price'] : 0.0,
+                        isset($response->response[$key]['credit']) ? (float) $response->response[$key]['credit'] : 0.0
+                    );
                 }
                 else
                 {
                     $item->setStatus('error');
                 }
+            }
+        }
+    }
+
+
+    /**
+     * @param int|null $timestamp
+     */
+    public function schedule($timestamp = null)
+    {
+        foreach($this->array as $item)
+        {
+            if($item instanceof BulkGate\Message\IMessage)
+            {
+                $item->schedule($timestamp);
             }
         }
     }
@@ -90,7 +107,7 @@ class BulkMessage extends BulkGate\Utils\Iterator implements IMessage, \JsonSeri
 
 		foreach ($this->array as $message)
 		{
-			if ($message instanceof IMessage)
+			if ($message instanceof BulkGate\Message\IMessage)
 			{
 				$output[] = $message->toArray();
 			}

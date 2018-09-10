@@ -30,8 +30,8 @@ Assert::same('bulk-sms', $bulk->getType());
 
 Assert::equal(
 	[
-		['number' => $phone_number, 'text' => $bulk->get(0)->getText(), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
-		['number' => $phone_number_new, 'text' => $bulk->get(1)->getText(), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
+		['number' => $phone_number, 'text' => $bulk->get(0)->getText(), 'status' => 'preparation', 'price' => 0.0, 'credit' => 0.0, 'id' => null, 'scheduled' => null],
+		['number' => $phone_number_new, 'text' => $bulk->get(1)->getText(), 'status' => 'preparation', 'price' => 0.0, 'credit' => 0.0, 'id' => null, 'scheduled' => null],
 	],
 	$bulk->toArray()
 );
@@ -41,10 +41,12 @@ Assert::equal(2, $bulk->count());
 $message = new Message($number, $text);
 $bulk->addMessage($message);
 
+$bulk->schedule(123456);
+
 Assert::equal(
 	[
-		['number' => $phone_number, 'text' => new Message\Text($text), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
-		['number' => $phone_number_new, 'text' => new Message\Text($text_new), 'status' => 'preparation', 'price' => 0.0, 'id' => null],
+		['number' => $phone_number, 'text' => new Message\Text($text), 'status' => 'preparation', 'price' => 0.0, 'credit' => 0.0, 'id' => null, 'scheduled' => 123456],
+		['number' => $phone_number_new, 'text' => new Message\Text($text_new), 'status' => 'preparation', 'price' => 0.0, 'credit' => 0.0, 'id' => null, 'scheduled' => 123456],
 		$message->toArray(),
 	],
 	$bulk->toArray()

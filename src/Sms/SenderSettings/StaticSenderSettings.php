@@ -24,6 +24,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
      * StaticSenderSettings constructor.
      * @param string $type
      * @param string $value
+     * @throws InvalidSenderException
      */
 	public function __construct($type = Gate::GATE_SYSTEM_NUMBER, $value = '')
 	{
@@ -63,6 +64,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 
 	/**
 	 * @param string $value
+     * @throws InvalidSenderException
 	 */
 	public function textSender($value)
 	{
@@ -80,6 +82,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 
 	/**
 	 * @param string $value
+     * @throws InvalidSenderException
 	 */
 	public function ownNumber($value)
 	{

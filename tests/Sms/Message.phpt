@@ -38,12 +38,24 @@ Assert::type("BulkGate\\Sms\\Message\\Text", $message->getText());
 
 Assert::same(Sms\Message::TYPE, $message->getType());
 
-$message->setStatus('accepted', 'id', 1.2);
+$message->setStatus('accepted', 'id', 1.2, 1405.23);
+
+$message->schedule(1234);
 
 Assert::equal([
     'number' => $message->getPhoneNumber(),
     'text' => $message->getText(),
     'status' => 'accepted',
     'id' => 'id',
-    'price' => 1.2
+    'price' => 1.2,
+    'credit' => 1405.23,
+    'scheduled' => 1234,
 ], $message->toArray());
+
+Assert::equal(1405.23, $message->getCredit());
+
+Assert::equal(1.2, $message->getPrice());
+
+Assert::equal('id', $message->getId());
+
+Assert::equal('accepted', $message->getStatus());
