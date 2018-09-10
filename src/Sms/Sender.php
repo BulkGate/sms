@@ -173,7 +173,7 @@ class Sender implements ISender
 	/**
 	 * @param BulkGate\Message\IMessage $message
 	 */
-	private function fillDefaultCountryIso(BulkGate\Message\IMessage $message): void
+	private function fillDefaultCountryIso(BulkGate\Message\IMessage $message)
     {
         if($this->defaultCountry !== null)
         {

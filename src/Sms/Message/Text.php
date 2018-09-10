@@ -66,7 +66,7 @@ class Text implements \JsonSerializable
      * @param null|string $key
      * @return array|string|int|bool
      */
-    public function getVariables(?string $key = null)
+    public function getVariables($key = null)
     {
         if($key !== null)
         {
