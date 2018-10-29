@@ -7,7 +7,7 @@ BulkGate SMS - PHP SDK
 
 - [Documentation](https://help.bulkgate.com/docs/en/php-sdk-instalation.html)
 - [BulkGate portal](https://portal.bulkgate.com/) 
-- [BulkGate](www.bulkgate.com)
+- [BulkGate](https://www.bulkgate.com)
 
 ## Instalation
 
