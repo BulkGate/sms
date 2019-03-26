@@ -8,6 +8,8 @@
 namespace BulkGate\Sms;
 
 use BulkGate;
+use BulkGate\Sms\Message\PhoneNumber;
+use BulkGate\Sms\Message\Text;
 
 class Message implements BulkGate\Message\IMessage, \JsonSerializable
 {
@@ -39,8 +41,8 @@ class Message implements BulkGate\Message\IMessage, \JsonSerializable
 
     /**
      * Message constructor.
-     * @param null $phone_number
-     * @param null $text
+     * @param string|PhoneNumber|null $phone_number
+     * @param string|Text|null $text
      */
 	public function __construct($phone_number = null, $text = null)
 	{
