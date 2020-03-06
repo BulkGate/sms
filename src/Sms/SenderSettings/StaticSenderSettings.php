@@ -75,7 +75,7 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 		}
 		else
         {
-			throw new InvalidSenderException('Text sender length must be between 3 and 13 characters (' . strlen($value) . ' characters given)');
+			throw new InvalidSenderException('Text sender length must be between 3 and 11 characters (' . strlen($value) . ' characters given)');
 		}
 	}
 
