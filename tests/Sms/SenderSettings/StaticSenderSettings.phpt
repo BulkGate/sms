@@ -58,7 +58,7 @@ Assert::same($own_number, $settings->toArray());
 foreach (['Nette framework', 'NF'] as $sender) {
 	Assert::exception(function () use ($settings, $sender) {
 		$settings->textSender($sender);
-	}, InvalidSenderException::class, 'Text sender length must be between 3 and 13 characters (' . strlen($sender) . ' characters given)');
+	}, InvalidSenderException::class, 'Text sender length must be between 3 and 11 characters (' . strlen($sender) . ' characters given)');
 }
 
 foreach (['', '   '] as $sender) {
