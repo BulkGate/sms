@@ -35,7 +35,7 @@ Assert::exception(function () {
 }, InvalidGateException::class, 'Gate must be in interval <0, 4>');
 
 Assert::exception(function () {
-	new CountrySenderID('CZ', 5, '');
+	new CountrySenderID('CZ', 7, '');
 }, InvalidGateException::class, 'Gate must be in interval <0, 4>');
 
 Assert::exception(function () {
