@@ -27,3 +27,5 @@ Assert::same(1, Gate::GATE2);
 Assert::same(2, Gate::GATE3);
 Assert::same(3, Gate::GATE4);
 Assert::same(4, Gate::GATE5);
+Assert::same(5, Gate::GATE6);
+Assert::same(6, Gate::GATE7);
