@@ -36,9 +36,9 @@ class CountrySenderID
 		$this->gate = $gate;
 		$this->sender = $sender;
 
-		if ((int) $this->gate < Gate::GATE1 || (int) $this->gate > Gate::GATE5)
+		if ((int) $this->gate < Gate::GATE1 || (int) $this->gate > Gate::GATE7)
 		{
-			throw new InvalidGateException('Gate must be in interval <0, 4>');
+			throw new InvalidGateException('Gate must be in interval <0, 6>');
 		}
 	}
 
