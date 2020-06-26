@@ -36,4 +36,8 @@ class Gate
 	const GATE4 = 3;
 
 	const GATE5 = 4;
+	
+	const GATE6 = 5;
+	
+	const GATE7 = 6;
 }
