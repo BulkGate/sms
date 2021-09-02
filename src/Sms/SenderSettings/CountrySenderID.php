@@ -17,7 +17,7 @@ class CountrySenderID
 	private $iso;
 
 	/** @var int */
-	private $gate = Gate::GATE1;
+	private $gate;
 
 	/** @var string */
 	private $sender = '';
@@ -28,18 +28,12 @@ class CountrySenderID
      * @param string $iso
      * @param int $gate
      * @param string $sender
-     * @throws InvalidGateException
      */
 	public function __construct(string $iso, int $gate = Gate::GATE1, string $sender = '')
 	{
 		$this->iso = strtolower($iso);
 		$this->gate = $gate;
 		$this->sender = $sender;
-
-		if ((int) $this->gate < Gate::GATE1 || (int) $this->gate > Gate::GATE7)
-		{
-			throw new InvalidGateException('Gate must be in interval <0, 6>');
-		}
 	}
 
 

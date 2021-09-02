@@ -27,6 +27,8 @@ class Gate
 
 	const GATE_OWN_NUMBER = 'gOwn';
 
+	const GATE_MOBILE_CONNECT = 'gMobile';
+
 	const GATE1 = 0;
 
 	const GATE2 = 1;

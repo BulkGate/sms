@@ -41,6 +41,9 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
 			case Gate::GATE_OWN_NUMBER:
 				$this->ownNumber($value);
 				break;
+			case Gate::GATE_MOBILE_CONNECT:
+				$this->mobileConnect($value);
+				break;
 			default:
 				throw new InvalidSenderException('Unknown sender type '.$type);
 				break;
@@ -95,6 +98,13 @@ class StaticSenderSettings implements ISenderSettings, \JsonSerializable
         {
 			throw new InvalidSenderException('Empty own number value');
 		}
+	}
+
+
+	public function mobileConnect(string $value): void
+	{
+		$this->type = Gate::GATE_MOBILE_CONNECT;
+		$this->value = $value;
 	}
 
 
