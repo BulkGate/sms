@@ -101,8 +101,8 @@ class CountrySenderSettings implements ISenderSettings, \JsonSerializable
 	}
 
 
-	public function jsonSerialize()
-    {
-        return $this->toArray();
-    }
+	public function jsonSerialize(): array
+	{
+		return $this->toArray();
+	}
 }
