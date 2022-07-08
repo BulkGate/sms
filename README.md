@@ -1,4 +1,4 @@
-SDK is deprecated please use https://github.com/BulkGate/php-sdk
+The SDK is outdated, please use it https://github.com/BulkGate/php-sdk
 =============
 
 BulkGate SMS - PHP SDK
